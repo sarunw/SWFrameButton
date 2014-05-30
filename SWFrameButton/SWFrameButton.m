@@ -23,7 +23,11 @@
 #import "SWFrameButton.h"
 #import <QuartzCore/QuartzCore.h>
 
-#define kDefaultFontSize 15.0
+CGFloat const SWDefaultFontSize        = 15.0;
+CGFloat const SWCornerRadius           = 4.0;
+CGFloat const SWBorderWidth            = 1.0;
+CGFloat const SWAnimationDuration      = 0.25;
+UIEdgeInsets const SWContentEdgeInsets = {5, 10, 5, 10};
 
 @implementation SWFrameButton
 
@@ -48,10 +52,10 @@
 
 - (void)commonInit
 {
-    self.layer.cornerRadius = 4;
-    self.layer.borderWidth = 1;
+    self.layer.cornerRadius = SWCornerRadius;
+    self.layer.borderWidth = SWBorderWidth;
     self.layer.borderColor = self.tintColor.CGColor;
-    [self setContentEdgeInsets:UIEdgeInsetsMake(5, 10, 5, 10)];
+    [self setContentEdgeInsets:SWContentEdgeInsets];
     [self setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
     [self setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
     [self setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected|UIControlStateHighlighted];
@@ -60,14 +64,14 @@
 
 - (void)setupDefaultConfiguration
 {
-    [self.titleLabel setFont:[UIFont systemFontOfSize:kDefaultFontSize]];
+    [self.titleLabel setFont:[UIFont systemFontOfSize:SWDefaultFontSize]];
 }
 
 - (void)setHighlighted:(BOOL)highlighted
 {
     [super setHighlighted:highlighted];
     
-    [UIView animateWithDuration:0.25 animations:^{
+    [UIView animateWithDuration:SWAnimationDuration animations:^{
         if (highlighted) {
             if (self.selected) {
                 CGFloat r, g, b;
