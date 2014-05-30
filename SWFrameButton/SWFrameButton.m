@@ -23,6 +23,8 @@
 #import "SWFrameButton.h"
 #import <QuartzCore/QuartzCore.h>
 
+#define kDefaultFontSize 15.0
+
 @implementation SWFrameButton
 
 - (id)initWithFrame:(CGRect)frame
@@ -30,6 +32,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         [self commonInit];
+        [self setupDefaultConfiguration];
     }
     return self;
 }
@@ -53,6 +56,11 @@
     [self setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
     [self setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected|UIControlStateHighlighted];
     [self setTitleColor:self.tintColor forState:UIControlStateNormal];
+}
+
+- (void)setupDefaultConfiguration
+{
+    [self.titleLabel setFont:[UIFont systemFontOfSize:kDefaultFontSize]];
 }
 
 - (void)setHighlighted:(BOOL)highlighted
