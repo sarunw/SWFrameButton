@@ -53,7 +53,6 @@
     [tintButton sizeToFit];
     tintButton.tintColor = [UIColor greenColor];
     tintButton.center = CGPointMake(self.view.center.x, self.view.center.y + 100);
-    [tintButton setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
     
     [self.view addSubview:tintButton];
     
@@ -61,6 +60,7 @@
     [dimButton setTitle:@"Dim Button" forState:UIControlStateNormal];
     [dimButton addTarget:self action:@selector(toggleDim:) forControlEvents:UIControlEventTouchUpInside];
     [dimButton sizeToFit];
+    dimButton.tintAdjustmentMode = UIViewTintAdjustmentModeDimmed;
     dimButton.center = CGPointMake(self.view.center.x, self.view.center.y + 150);
     [self.view addSubview:dimButton];
     
