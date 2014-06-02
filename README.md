@@ -24,7 +24,7 @@ Requires iOS 7.0+ and ARC.
 SWFrameButton design to use `tintColor` to determine its color, so try to avoid set text color by `setTitleColor:forState:` it won't break your button, but may raise inconsistent highlighted/selected color state. `Text Color` property in Interface Builder will be ignore for this reason, use `Tint` property in view section instead.
 
 Basic usage
-```
+```objective-c
 SWFrameButton *button = [[SWFrameButton alloc] init];
 [button setTitle:@"Green Tint Button" forState:UIControlStateNormal];
 [button sizeToFit];
@@ -37,7 +37,7 @@ If you use Interface Builder, add a UIBUtton to your interface and set Class to 
 
 ### Customization
 You can use customize SWFrameButton using UIAppearance
-```
+```objective-c
 [[SWFrameButton appearance] setTintColor:[UIColor orangeColor]];
 ```
 
