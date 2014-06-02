@@ -53,6 +53,8 @@
     [tintButton sizeToFit];
     tintButton.tintColor = [UIColor greenColor];
     tintButton.center = CGPointMake(self.view.center.x, self.view.center.y + 100);
+    [tintButton setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
+    
     [self.view addSubview:tintButton];
     
     SWFrameButton *dimButton = [[SWFrameButton alloc] init];
