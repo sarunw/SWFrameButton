@@ -23,11 +23,11 @@
 #import "SWFrameButton.h"
 #import <QuartzCore/QuartzCore.h>
 
-CGFloat const SWDefaultFontSize        = 15.0;
-CGFloat const SWCornerRadius           = 4.0;
-CGFloat const SWBorderWidth            = 1.0;
-CGFloat const SWAnimationDuration      = 0.25;
-UIEdgeInsets const SWContentEdgeInsets = {5, 10, 5, 10};
+static CGFloat const SWDefaultFontSize        = 15.0;
+static CGFloat const SWCornerRadius           = 4.0;
+static CGFloat const SWBorderWidth            = 1.0;
+static CGFloat const SWAnimationDuration      = 0.25;
+static UIEdgeInsets const SWContentEdgeInsets = {5, 10, 5, 10};
 
 @implementation SWFrameButton
 
