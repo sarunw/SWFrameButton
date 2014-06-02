@@ -35,6 +35,12 @@ If you use Interface Builder, add a UIBUtton to your interface and set Class to 
 
 ![Use with storyboard](/Documentation/Images/use-with-storyboard.png)
 
+### Customization
+You can use customize SWFrameButton using UIAppearance
+```
+[[SWFrameButton appearance] setTintColor:[UIColor orangeColor]];
+```
+
 ## Author
 
 [Sarun Wongpatcharapakorn](https://github.com/sarunw) ([@sarunw](https://twitter.com/sarunw))
