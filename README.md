@@ -2,6 +2,8 @@
 
 This UIButton subclass replicate single line border button see in iOS 7 App Store.
 
+![Screenshot](/Documentation/Images/screenshot.png)
+
 ## Installation
 
 SWFrameButton is available through [CocoaPods](http://cocoapods.org). To install
@@ -9,7 +11,7 @@ it, simply add the following line to your Podfile:
 
     pod "SWFrameButton"
 
-You may also quickly try the HTPressableButton example project with
+You may also quickly try the SWFrameButton example project with
 
     pod try SWFrameButton
 
