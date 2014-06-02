@@ -31,7 +31,6 @@ If you use Interface Builder, add a UIBUtton to your interface and set Class to 
 
 [Sarun Wongpatcharapakorn](https://github.com/sarunw) ([@sarunw](https://twitter.com/sarunw))
 
-
 ## License
 
 SWFrameButton is available under the MIT license. See the LICENSE file for more info.
