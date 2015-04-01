@@ -36,7 +36,10 @@ static UIEdgeInsets const SWContentEdgeInsets = {5, 10, 5, 10};
     self = [super initWithFrame:frame];
     if (self) {
         [self commonInit];
-        [self setupDefaultConfiguration];
+        [self commonSetup];
+        
+        // Set default font when init in code
+        [self.titleLabel setFont:[UIFont systemFontOfSize:SWDefaultFontSize]];
     }
     return self;
 }
@@ -46,14 +49,15 @@ static UIEdgeInsets const SWContentEdgeInsets = {5, 10, 5, 10};
     self = [super initWithCoder:aDecoder];
     if (self) {
         [self commonInit];
+        [self commonSetup];
     }
     return self;
 }
 
-- (void)commonInit
+- (void)commonSetup
 {
-    self.layer.cornerRadius = SWCornerRadius;
-    self.layer.borderWidth = SWBorderWidth;
+    self.layer.cornerRadius = self.cornerRadius;
+    self.layer.borderWidth = self.borderWidth;
     self.layer.borderColor = self.tintColor.CGColor;
     [self setContentEdgeInsets:SWContentEdgeInsets];
     [self setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
@@ -62,10 +66,12 @@ static UIEdgeInsets const SWContentEdgeInsets = {5, 10, 5, 10};
     [self setTitleColor:self.tintColor forState:UIControlStateNormal];
 }
 
-- (void)setupDefaultConfiguration
+- (void)commonInit
 {
-    [self.titleLabel setFont:[UIFont systemFontOfSize:SWDefaultFontSize]];
+    _cornerRadius = SWCornerRadius;
+    _borderWidth = SWBorderWidth;
 }
+
 
 - (void)setHighlighted:(BOOL)highlighted
 {
@@ -113,5 +119,20 @@ static UIEdgeInsets const SWContentEdgeInsets = {5, 10, 5, 10};
     }
 }
 
+#pragma mark - Properties
+
+- (void)setCornerRadius:(CGFloat)cornerRadius
+{
+    _cornerRadius = cornerRadius;
+    
+    self.layer.cornerRadius = cornerRadius;
+}
+
+- (void)setBorderWidth:(CGFloat)borderWidth
+{
+    _borderWidth = borderWidth;
+    
+    self.layer.borderWidth = borderWidth;
+}
 
 @end

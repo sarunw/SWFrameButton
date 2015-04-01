@@ -24,4 +24,7 @@
 
 @interface SWFrameButton : UIButton
 
+@property (nonatomic, assign) IBInspectable CGFloat cornerRadius;
+@property (nonatomic, assign) IBInspectable CGFloat borderWidth;
+
 @end

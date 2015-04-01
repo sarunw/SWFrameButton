@@ -69,7 +69,6 @@
     [systemButton sizeToFit];
     systemButton.center = CGPointMake(self.view.center.x, self.view.center.y + 200);
     [self.view addSubview:systemButton];
-    
 }
 
 - (void)didReceiveMemoryWarning
