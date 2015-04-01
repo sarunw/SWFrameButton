@@ -24,7 +24,7 @@
 
 @interface SWFrameButton : UIButton
 
-@property (nonatomic, assign) IBInspectable CGFloat cornerRadius UI_APPEARANCE_SELECTOR;
-@property (nonatomic, assign) IBInspectable CGFloat borderWidth UI_APPEARANCE_SELECTOR;
+@property (nonatomic, assign) IBInspectable CGFloat cornerRadius; //UI_APPEARANCE_SELECTOR;
+@property (nonatomic, assign) IBInspectable CGFloat borderWidth; //UI_APPEARANCE_SELECTOR;
 
 @end

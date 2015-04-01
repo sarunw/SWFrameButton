@@ -72,6 +72,16 @@ static UIEdgeInsets const SWContentEdgeInsets = {5, 10, 5, 10};
     _borderWidth = SWBorderWidth;
 }
 
+#pragma mark - Custom Accessors
+- (void)didMoveToSuperview
+{
+    UIView *superView = self.superview;
+    
+    UIColor *superViewBackgroundColor = superView.backgroundColor;
+    [self setTitleColor:superViewBackgroundColor forState:UIControlStateHighlighted];
+    [self setTitleColor:superViewBackgroundColor forState:UIControlStateSelected];
+    [self setTitleColor:superViewBackgroundColor forState:UIControlStateSelected|UIControlStateHighlighted];
+}
 
 - (void)setHighlighted:(BOOL)highlighted
 {
