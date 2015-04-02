@@ -2,7 +2,7 @@
 
 This UIButton subclass replicate single line border button see in iOS 7 App Store.
 
-![Screenshot](/Documentation/Images/screenshot.png)
+![Screenshot](/Documentation/Images/demo.gif)
 
 ## Installation
 
