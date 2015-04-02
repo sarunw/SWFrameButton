@@ -60,9 +60,6 @@ static UIEdgeInsets const SWContentEdgeInsets = {5, 10, 5, 10};
     self.layer.borderWidth = self.borderWidth;
     self.layer.borderColor = self.tintColor.CGColor;
     [self setContentEdgeInsets:SWContentEdgeInsets];
-    [self setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
-    [self setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
-    [self setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected|UIControlStateHighlighted];
     [self setTitleColor:self.tintColor forState:UIControlStateNormal];
 }
 
@@ -73,14 +70,31 @@ static UIEdgeInsets const SWContentEdgeInsets = {5, 10, 5, 10};
 }
 
 #pragma mark - Custom Accessors
-- (void)didMoveToSuperview
+- (void)willMoveToSuperview:(UIView *)newSuperview
 {
-    UIView *superView = self.superview;
+    UIView *oldSuperview = self.superview;
     
-    UIColor *superViewBackgroundColor = superView.backgroundColor;
-    [self setTitleColor:superViewBackgroundColor forState:UIControlStateHighlighted];
-    [self setTitleColor:superViewBackgroundColor forState:UIControlStateSelected];
-    [self setTitleColor:superViewBackgroundColor forState:UIControlStateSelected|UIControlStateHighlighted];
+    if (oldSuperview) {
+        [oldSuperview removeObserver:self forKeyPath:@"backgroundColor"];
+    }
+    
+    if (newSuperview) {
+        // This for SWFrameButton init in code, where backgroundColor already in placed
+        [self setHighlightedTintColor:newSuperview.backgroundColor];
+        
+        // This for SWFrameButton init from storyboard where this method is called
+        // backgroundColor of superView didn't set yet.
+        // So observed for later changed
+        // and also benefit SWFrameButton init in code when superview change backgroundColor later
+        [newSuperview addObserver:self forKeyPath:@"backgroundColor" options:NSKeyValueObservingOptionNew context:NULL];
+    }
+}
+
+- (void)dealloc
+{
+    if (self.superview) {
+        [self.superview removeObserver:self forKeyPath:@"backgroundColor"];
+    }
 }
 
 - (void)setHighlighted:(BOOL)highlighted
@@ -143,6 +157,26 @@ static UIEdgeInsets const SWContentEdgeInsets = {5, 10, 5, 10};
     _borderWidth = borderWidth;
     
     self.layer.borderWidth = borderWidth;
+}
+
+#pragma mark - KVO
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if ([keyPath isEqualToString:@"backgroundColor"]) {
+        UIColor *newColor = change[NSKeyValueChangeNewKey];
+        
+        [self setHighlightedTintColor:newColor];
+    }
+    
+//    [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+}
+
+- (void)setHighlightedTintColor:(UIColor *)color
+{
+    [self setTitleColor:color forState:UIControlStateHighlighted];
+    [self setTitleColor:color forState:UIControlStateSelected];
+    [self setTitleColor:color forState:UIControlStateSelected|UIControlStateHighlighted];
+
 }
 
 @end
