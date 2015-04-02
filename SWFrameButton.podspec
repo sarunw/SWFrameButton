@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "SWFrameButton"
-  s.version          = "0.1.0"
+  s.version          = "1.0.0"
   s.summary          = "iOS7 UIButton with border"
   s.homepage         = "https://github.com/sarunw/SWFrameButton"
   s.license          = 'MIT'
