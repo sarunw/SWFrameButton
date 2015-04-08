@@ -70,36 +70,12 @@ static UIEdgeInsets const SWContentEdgeInsets = {5, 10, 5, 10};
 }
 
 #pragma mark - Custom Accessors
-- (void)willMoveToSuperview:(UIView *)newSuperview
-{
-    UIView *oldSuperview = self.superview;
-    
-    if (oldSuperview) {
-        [oldSuperview removeObserver:self forKeyPath:@"backgroundColor"];
-    }
-    
-    if (newSuperview) {
-        // This for SWFrameButton init in code, where backgroundColor already in placed
-        [self setHighlightedTintColor:newSuperview.backgroundColor];
-        
-        // This for SWFrameButton init from storyboard where this method is called
-        // backgroundColor of superView didn't set yet.
-        // So observed for later changed
-        // and also benefit SWFrameButton init in code when superview change backgroundColor later
-        [newSuperview addObserver:self forKeyPath:@"backgroundColor" options:NSKeyValueObservingOptionNew context:NULL];
-    }
-}
-
-- (void)dealloc
-{
-    if (self.superview) {
-        [self.superview removeObserver:self forKeyPath:@"backgroundColor"];
-    }
-}
 
 - (void)setHighlighted:(BOOL)highlighted
 {
     [super setHighlighted:highlighted];
+    
+    [self setHighlightedTintColor:[self currentBackgroundColor]];
     
     [UIView animateWithDuration:SWAnimationDuration animations:^{
         if (highlighted) {
@@ -159,24 +135,31 @@ static UIEdgeInsets const SWContentEdgeInsets = {5, 10, 5, 10};
     self.layer.borderWidth = borderWidth;
 }
 
-#pragma mark - KVO
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-{
-    if ([keyPath isEqualToString:@"backgroundColor"]) {
-        UIColor *newColor = change[NSKeyValueChangeNewKey];
-        
-        [self setHighlightedTintColor:newColor];
-    }
-    
-//    [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
-}
-
 - (void)setHighlightedTintColor:(UIColor *)color
 {
     [self setTitleColor:color forState:UIControlStateHighlighted];
     [self setTitleColor:color forState:UIControlStateSelected];
     [self setTitleColor:color forState:UIControlStateSelected|UIControlStateHighlighted];
 
+}
+
+#pragma mark - helper
+/**
+ *  Get current background color
+ *
+ *  @return first non-nil backgroundColor of superView
+ */
+- (UIColor *)currentBackgroundColor
+{
+    UIColor *backgroundColor = self.superview.backgroundColor;
+    UIView *superSuperView = self.superview.superview;
+    
+    while (backgroundColor == nil && superSuperView != nil) {
+        backgroundColor = superSuperView.backgroundColor;
+        superSuperView = superSuperView.superview;
+    }
+    
+    return backgroundColor;
 }
 
 @end
