@@ -71,6 +71,11 @@ static UIEdgeInsets const SWContentEdgeInsets = {5, 10, 5, 10};
 
 #pragma mark - Custom Accessors
 
+- (void)didMoveToWindow
+{
+    [self setHighlightedTintColor:[self currentBackgroundColor]];
+}
+
 - (void)setHighlighted:(BOOL)highlighted
 {
     [super setHighlighted:highlighted];
@@ -102,6 +107,8 @@ static UIEdgeInsets const SWContentEdgeInsets = {5, 10, 5, 10};
 - (void)setSelected:(BOOL)selected
 {
     [super setSelected:selected];
+    
+    [self setHighlightedTintColor:[self currentBackgroundColor]];
 
     if (selected) {
         self.backgroundColor = self.tintColor;
