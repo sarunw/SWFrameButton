@@ -27,6 +27,7 @@ static CGFloat const SWDefaultFontSize        = 15.0;
 static CGFloat const SWCornerRadius           = 4.0;
 static CGFloat const SWBorderWidth            = 1.0;
 static CGFloat const SWAnimationDuration      = 0.25;
+static CGFloat const SWAppleTouchableGuidelineDimension = 44;
 static UIEdgeInsets const SWContentEdgeInsets = {5, 10, 5, 10};
 
 @implementation SWFrameButton
@@ -67,6 +68,16 @@ static UIEdgeInsets const SWContentEdgeInsets = {5, 10, 5, 10};
 {
     _cornerRadius = SWCornerRadius;
     _borderWidth = SWBorderWidth;
+}
+
+- (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event
+{
+    CGSize buttonSize = self.bounds.size;
+    CGFloat widthToAdd = MAX(SWAppleTouchableGuidelineDimension - buttonSize.width, 0);
+    CGFloat heightToAdd = MAX(SWAppleTouchableGuidelineDimension - buttonSize.height, 0);
+    CGRect newFrame = CGRectInset(self.bounds, -widthToAdd, -heightToAdd);
+    
+    return CGRectContainsPoint(newFrame, point);
 }
 
 #pragma mark - Custom Accessors
