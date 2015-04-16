@@ -39,6 +39,15 @@ If you use Interface Builder, add a UIBUtton to your interface and set Class to 
 You can use customize SWFrameButton using UIAppearance
 ```objective-c
 [[SWFrameButton appearance] setTintColor:[UIColor orangeColor]];
+[[SWFrameButton appearance] setBorderWidth:1];
+[[SWFrameButton appearance] setCornerRadius:10];
+```
+or set individual button style via property
+```objective-c
+SWFrameButton *button = [[SWFrameButton alloc] init];
+button.tintColor = [UIColor orangeColor];
+button.borderWidth = 1;
+button.corderRadius = 10;
 ```
 
 ## Author
