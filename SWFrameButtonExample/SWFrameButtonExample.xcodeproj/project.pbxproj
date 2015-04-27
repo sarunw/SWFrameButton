@@ -22,6 +22,7 @@
 		A00551EF1938497B009FF21A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A00551ED1938497B009FF21A /* InfoPlist.strings */; };
 		A00551F11938497B009FF21A /* SWFrameButtonExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A00551F01938497B009FF21A /* SWFrameButtonExampleTests.m */; };
 		A005520119384AAD009FF21A /* SWFrameButton.m in Sources */ = {isa = PBXBuildFile; fileRef = A005520019384AAD009FF21A /* SWFrameButton.m */; };
+		A0A538201AEEAB7900DF3DE8 /* SWFrameButton.podspec in Resources */ = {isa = PBXBuildFile; fileRef = A0A5381F1AEEAB7900DF3DE8 /* SWFrameButton.podspec */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,7 @@
 		A00551F01938497B009FF21A /* SWFrameButtonExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SWFrameButtonExampleTests.m; sourceTree = "<group>"; };
 		A00551FF19384AAD009FF21A /* SWFrameButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWFrameButton.h; sourceTree = "<group>"; };
 		A005520019384AAD009FF21A /* SWFrameButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWFrameButton.m; sourceTree = "<group>"; };
+		A0A5381F1AEEAB7900DF3DE8 /* SWFrameButton.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = SWFrameButton.podspec; path = ../../SWFrameButton.podspec; sourceTree = "<group>"; };
 		A0E9F8901AEE8DD4007223D2 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = MyPlayground.playground; path = ../MyPlayground.playground; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -117,6 +119,7 @@
 		A00551CB1938497A009FF21A /* SWFrameButtonExample */ = {
 			isa = PBXGroup;
 			children = (
+				A0A5381F1AEEAB7900DF3DE8 /* SWFrameButton.podspec */,
 				A00551FE19384AA5009FF21A /* SWFrameButton */,
 				A00551D41938497A009FF21A /* SWAppDelegate.h */,
 				A00551D51938497A009FF21A /* SWAppDelegate.m */,
@@ -247,6 +250,7 @@
 			files = (
 				A00551DE1938497A009FF21A /* Images.xcassets in Resources */,
 				A00551D01938497A009FF21A /* InfoPlist.strings in Resources */,
+				A0A538201AEEAB7900DF3DE8 /* SWFrameButton.podspec in Resources */,
 				A00551D91938497A009FF21A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
