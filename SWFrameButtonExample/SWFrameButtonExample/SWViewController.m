@@ -69,6 +69,13 @@
     [systemButton sizeToFit];
     systemButton.center = CGPointMake(self.view.center.x, self.view.center.y + 200);
     [self.view addSubview:systemButton];
+    
+    SWFrameButton *disableButton = [[SWFrameButton alloc] init];
+    [disableButton setTitle:@"Disable Button" forState:UIControlStateNormal];
+    [disableButton sizeToFit];
+    disableButton.enabled = NO;
+    disableButton.center = CGPointMake(self.view.center.x, self.view.center.y + 250);
+    [self.view addSubview:disableButton];
 }
 
 - (void)didReceiveMemoryWarning

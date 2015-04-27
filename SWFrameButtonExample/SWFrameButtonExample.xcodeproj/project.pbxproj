@@ -56,6 +56,7 @@
 		A00551F01938497B009FF21A /* SWFrameButtonExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SWFrameButtonExampleTests.m; sourceTree = "<group>"; };
 		A00551FF19384AAD009FF21A /* SWFrameButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWFrameButton.h; sourceTree = "<group>"; };
 		A005520019384AAD009FF21A /* SWFrameButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWFrameButton.m; sourceTree = "<group>"; };
+		A0E9F8901AEE8DD4007223D2 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = MyPlayground.playground; path = ../MyPlayground.playground; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +86,7 @@
 		A00551B91938497A009FF21A = {
 			isa = PBXGroup;
 			children = (
+				A0E9F8901AEE8DD4007223D2 /* MyPlayground.playground */,
 				A00551CB1938497A009FF21A /* SWFrameButtonExample */,
 				A00551EA1938497B009FF21A /* SWFrameButtonExampleTests */,
 				A00551C41938497A009FF21A /* Frameworks */,

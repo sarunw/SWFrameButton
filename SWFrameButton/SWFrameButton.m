@@ -30,6 +30,12 @@ static CGFloat const SWAnimationDuration      = 0.25;
 static CGFloat const SWAppleTouchableGuidelineDimension = 44;
 static UIEdgeInsets const SWContentEdgeInsets = {5, 10, 5, 10};
 
+@interface SWFrameButton ()
+
+@property (nonatomic, strong) UIImageView *backgroundImageView;
+
+@end
+
 @implementation SWFrameButton
 
 - (id)initWithFrame:(CGRect)frame
@@ -52,6 +58,7 @@ static UIEdgeInsets const SWContentEdgeInsets = {5, 10, 5, 10};
         [self commonInit];
         [self commonSetup];
     }
+    
     return self;
 }
 
@@ -62,6 +69,10 @@ static UIEdgeInsets const SWContentEdgeInsets = {5, 10, 5, 10};
     self.layer.borderColor = self.tintColor.CGColor;
     [self setContentEdgeInsets:SWContentEdgeInsets];
     [self setTitleColor:self.tintColor forState:UIControlStateNormal];
+    self.backgroundImageView = [[UIImageView alloc] initWithFrame:self.bounds];
+    self.backgroundImageView.alpha = 0;
+    self.backgroundImageView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
+    [self insertSubview:self.backgroundImageView atIndex:0];
 }
 
 - (void)commonInit
@@ -82,33 +93,32 @@ static UIEdgeInsets const SWContentEdgeInsets = {5, 10, 5, 10};
 
 #pragma mark - Custom Accessors
 
-- (void)didMoveToWindow
-{
-    [self setHighlightedTintColor:[self currentBackgroundColor]];
-}
-
 - (void)setHighlighted:(BOOL)highlighted
 {
     [super setHighlighted:highlighted];
     
-    [self setHighlightedTintColor:[self currentBackgroundColor]];
-    
     [UIView animateWithDuration:SWAnimationDuration animations:^{
         if (highlighted) {
             if (self.selected) {
-                CGFloat r, g, b;
-                [self.tintColor getRed:&r green:&g blue:&b alpha:nil];
-                self.backgroundColor = [UIColor colorWithRed:r green:g blue:b alpha:0.5];
+                self.backgroundImageView.alpha = 0.5;
+                self.titleLabel.alpha = 0;
+                self.imageView.alpha = 0;
                 self.layer.borderColor = [UIColor clearColor].CGColor;
             } else {
-                self.backgroundColor = self.tintColor;
+                self.backgroundImageView.alpha = 1;
+                self.titleLabel.alpha = 0;
+                self.imageView.alpha = 0;
             }
         } else {
             self.layer.borderColor = self.tintColor.CGColor;
             if (self.selected) {
-                self.backgroundColor = self.tintColor;
+                self.backgroundImageView.alpha = 1;
+                self.titleLabel.alpha = 0;
+                self.imageView.alpha = 0;
             } else {
-                self.backgroundColor = [UIColor clearColor];
+                self.backgroundImageView.alpha = 0;
+                self.titleLabel.alpha = 1;
+                self.imageView.alpha = 1;
             }
         }
 
@@ -118,13 +128,15 @@ static UIEdgeInsets const SWContentEdgeInsets = {5, 10, 5, 10};
 - (void)setSelected:(BOOL)selected
 {
     [super setSelected:selected];
-    
-    [self setHighlightedTintColor:[self currentBackgroundColor]];
 
     if (selected) {
-        self.backgroundColor = self.tintColor;
+        self.backgroundImageView.alpha = 1;
+        self.titleLabel.alpha = 0;
+        self.imageView.alpha = 0;
     } else {
-        self.backgroundColor = [UIColor clearColor];
+        self.backgroundImageView.alpha = 0;
+        self.titleLabel.alpha = 1;
+        self.imageView.alpha = 1;
     }
 }
 
@@ -132,9 +144,7 @@ static UIEdgeInsets const SWContentEdgeInsets = {5, 10, 5, 10};
 {
     self.layer.borderColor = self.tintColor.CGColor;
     [self setTitleColor:self.tintColor forState:UIControlStateNormal];
-    if (self.selected) {
-        self.backgroundColor = self.tintColor;
-    }
+    self.backgroundImageView.image = [self sw_backgroundImage];
 }
 
 #pragma mark - Properties
@@ -161,23 +171,47 @@ static UIEdgeInsets const SWContentEdgeInsets = {5, 10, 5, 10};
 
 }
 
-#pragma mark - helper
-/**
- *  Get current background color
- *
- *  @return first non-nil backgroundColor of superView
- */
-- (UIColor *)currentBackgroundColor
-{
-    UIColor *backgroundColor = self.superview.backgroundColor;
-    UIView *superSuperView = self.superview.superview;
+- (void)setEnabled:(BOOL)enabled {
+    [super setEnabled:enabled];
     
-    while (backgroundColor == nil && superSuperView != nil) {
-        backgroundColor = superSuperView.backgroundColor;
-        superSuperView = superSuperView.superview;
+    if (enabled) {
+        self.tintAdjustmentMode = UIViewTintAdjustmentModeAutomatic;
+    } else {
+        self.tintAdjustmentMode = UIViewTintAdjustmentModeDimmed;
     }
+}
+
+#pragma mark - helper
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    self.backgroundImageView.image = [self sw_backgroundImage];
+}
+
+- (UIImage *)sw_backgroundImage {
+    CGRect rect = self.bounds;
+    UIGraphicsBeginImageContextWithOptions(rect.size, NO, 0);
+    CGContextRef context = UIGraphicsGetCurrentContext();
     
-    return backgroundColor;
+    NSRange range =NSMakeRange(0, self.titleLabel.text.length);
+    
+    UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:rect cornerRadius:self.cornerRadius];
+    CGContextSetFillColorWithColor(context, self.tintColor.CGColor);
+    [path fill];
+    NSAttributedString *attributedString =    self.titleLabel.attributedText;
+
+    NSDictionary *dict = [attributedString attributesAtIndex:0 effectiveRange:&range];
+
+    CGContextSetBlendMode(context, kCGBlendModeDestinationOut);
+    
+    [self.titleLabel.text drawInRect:self.titleLabel.frame withAttributes:dict];
+    UIImage *i = self.imageView.image;
+    [i drawAtPoint:self.imageView.frame.origin blendMode:kCGBlendModeDestinationOut alpha:1];
+    
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+
+    return image;
 }
 
 @end
