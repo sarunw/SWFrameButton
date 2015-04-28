@@ -23,6 +23,7 @@
 		A00551F11938497B009FF21A /* SWFrameButtonExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A00551F01938497B009FF21A /* SWFrameButtonExampleTests.m */; };
 		A005520119384AAD009FF21A /* SWFrameButton.m in Sources */ = {isa = PBXBuildFile; fileRef = A005520019384AAD009FF21A /* SWFrameButton.m */; };
 		A0A538201AEEAB7900DF3DE8 /* SWFrameButton.podspec in Resources */ = {isa = PBXBuildFile; fileRef = A0A5381F1AEEAB7900DF3DE8 /* SWFrameButton.podspec */; };
+		A0CAF4531AEF391A002FD35D /* SWSecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0CAF4521AEF391A002FD35D /* SWSecondViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,8 @@
 		A00551FF19384AAD009FF21A /* SWFrameButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWFrameButton.h; sourceTree = "<group>"; };
 		A005520019384AAD009FF21A /* SWFrameButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWFrameButton.m; sourceTree = "<group>"; };
 		A0A5381F1AEEAB7900DF3DE8 /* SWFrameButton.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = SWFrameButton.podspec; path = ../../SWFrameButton.podspec; sourceTree = "<group>"; };
+		A0CAF4511AEF391A002FD35D /* SWSecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWSecondViewController.h; sourceTree = "<group>"; };
+		A0CAF4521AEF391A002FD35D /* SWSecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWSecondViewController.m; sourceTree = "<group>"; };
 		A0E9F8901AEE8DD4007223D2 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = MyPlayground.playground; path = ../MyPlayground.playground; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -126,6 +129,8 @@
 				A00551D71938497A009FF21A /* Main.storyboard */,
 				A00551DA1938497A009FF21A /* SWViewController.h */,
 				A00551DB1938497A009FF21A /* SWViewController.m */,
+				A0CAF4511AEF391A002FD35D /* SWSecondViewController.h */,
+				A0CAF4521AEF391A002FD35D /* SWSecondViewController.m */,
 				A00551DD1938497A009FF21A /* Images.xcassets */,
 				A00551CC1938497A009FF21A /* Supporting Files */,
 			);
@@ -270,6 +275,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A0CAF4531AEF391A002FD35D /* SWSecondViewController.m in Sources */,
 				A00551DC1938497A009FF21A /* SWViewController.m in Sources */,
 				A00551D61938497A009FF21A /* SWAppDelegate.m in Sources */,
 				A00551D21938497A009FF21A /* main.m in Sources */,
@@ -401,6 +407,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SWFrameButtonExample/SWFrameButtonExample-Prefix.pch";
 				INFOPLIST_FILE = "SWFrameButtonExample/SWFrameButtonExample-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -414,6 +421,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SWFrameButtonExample/SWFrameButtonExample-Prefix.pch";
 				INFOPLIST_FILE = "SWFrameButtonExample/SWFrameButtonExample-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
