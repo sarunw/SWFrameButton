@@ -79,15 +79,6 @@ static UIEdgeInsets const SWContentEdgeInsets = {5, 10, 5, 10};
     self.selected = self.selected;
 }
 
-- (void)drawRect:(CGRect)rect
-{
-    [super drawRect:rect];
-    
-    // HAX: solve image not alpha when set in storyboard
-    if (self.selected) {
-        self.imageView.alpha = 0;
-    }
-}
 
 - (void)commonInit
 {
@@ -159,7 +150,11 @@ static UIEdgeInsets const SWContentEdgeInsets = {5, 10, 5, 10};
     self.layer.borderColor = self.tintColor.CGColor;
     [self setTitleColor:self.tintColor forState:UIControlStateNormal];
     self.backgroundImageView.image = [self sw_backgroundImage];
+    
+    // HAX: prevent imageview from showing up
+    self.imageView.tintColor = [UIColor clearColor];
 }
+
 
 #pragma mark - Properties
 
