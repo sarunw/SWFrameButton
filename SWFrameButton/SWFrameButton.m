@@ -64,6 +64,7 @@ static UIEdgeInsets const SWContentEdgeInsets = {5, 10, 5, 10};
 
 - (void)commonSetup
 {
+    self.adjustsImageWhenHighlighted = NO;
     self.layer.cornerRadius = self.cornerRadius;
     self.layer.borderWidth = self.borderWidth;
     self.layer.borderColor = self.tintColor.CGColor;
