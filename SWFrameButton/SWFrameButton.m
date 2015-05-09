@@ -98,32 +98,36 @@ static UIEdgeInsets const SWContentEdgeInsets = {5, 10, 5, 10};
 {
     [super setHighlighted:highlighted];
     
-    [UIView animateWithDuration:SWAnimationDuration animations:^{
-        if (highlighted) {
-            if (self.selected) {
-                self.backgroundImageView.alpha = 0.5;
-                self.titleLabel.alpha = 0;
-                self.imageView.alpha = 0;
-                self.layer.borderColor = [UIColor clearColor].CGColor;
-            } else {
-                self.backgroundImageView.alpha = 1;
-                self.titleLabel.alpha = 0;
-                self.imageView.alpha = 0;
-            }
+    if (self.selected) {
+        if (self.highlighted) {
+            self.backgroundImageView.alpha = 0.5;
+            self.titleLabel.alpha = 0;
+            self.imageView.alpha = 0;
+            self.layer.borderColor = [UIColor clearColor].CGColor;
         } else {
-            self.layer.borderColor = self.tintColor.CGColor;
-            if (self.selected) {
+            self.backgroundImageView.alpha = 1;
+            self.titleLabel.alpha = 0;
+            self.imageView.alpha = 0;
+        }
+    } else {
+        
+        [UIView animateWithDuration:SWAnimationDuration animations:^{
+            if (highlighted) {
+                
                 self.backgroundImageView.alpha = 1;
                 self.titleLabel.alpha = 0;
                 self.imageView.alpha = 0;
+                
             } else {
+                self.layer.borderColor = self.tintColor.CGColor;
+                
                 self.backgroundImageView.alpha = 0;
                 self.titleLabel.alpha = 1;
                 self.imageView.alpha = 1;
+                
             }
-        }
-
-    }];
+        }];
+    }
 }
 
 - (void)setSelected:(BOOL)selected

@@ -44,6 +44,8 @@
     SWFrameButton *selectableButton = [[SWFrameButton alloc] init];
     [selectableButton setTitle:@"Selectable Button" forState:UIControlStateNormal];
     [selectableButton addTarget:self action:@selector(toggleSelection:) forControlEvents:UIControlEventTouchUpInside];
+    UIImage *magic = [UIImage imageNamed:@"magic"];
+    [selectableButton setImage:magic forState:UIControlStateNormal];
     [selectableButton sizeToFit];
     selectableButton.center = CGPointMake(self.view.center.x, self.view.center.y + 50);
     [self.view addSubview:selectableButton];
