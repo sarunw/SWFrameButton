@@ -74,7 +74,19 @@ static UIEdgeInsets const SWContentEdgeInsets = {5, 10, 5, 10};
     self.backgroundImageView.alpha = 0;
     self.backgroundImageView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
     [self insertSubview:self.backgroundImageView atIndex:0];
+    
+    // HAX: solve image not alpha when set in storyboard
     self.selected = self.selected;
+}
+
+- (void)drawRect:(CGRect)rect
+{
+    [super drawRect:rect];
+    
+    // HAX: solve image not alpha when set in storyboard
+    if (self.selected) {
+        self.imageView.alpha = 0;
+    }
 }
 
 - (void)commonInit
@@ -111,7 +123,6 @@ static UIEdgeInsets const SWContentEdgeInsets = {5, 10, 5, 10};
             self.imageView.alpha = 0;
         }
     } else {
-        
         [UIView animateWithDuration:SWAnimationDuration animations:^{
             if (highlighted) {
                 
