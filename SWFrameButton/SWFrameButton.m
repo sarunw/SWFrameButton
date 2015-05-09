@@ -98,7 +98,7 @@ static UIEdgeInsets const SWContentEdgeInsets = {5, 10, 5, 10};
 - (void)setHighlighted:(BOOL)highlighted
 {
     [super setHighlighted:highlighted];
-    
+
     if (self.selected) {
         if (self.highlighted) {
             self.backgroundImageView.alpha = 0.5;
@@ -121,7 +121,6 @@ static UIEdgeInsets const SWContentEdgeInsets = {5, 10, 5, 10};
                 
             } else {
                 self.layer.borderColor = self.tintColor.CGColor;
-                
                 self.backgroundImageView.alpha = 0;
                 self.titleLabel.alpha = 1;
                 self.imageView.alpha = 1;
@@ -140,9 +139,7 @@ static UIEdgeInsets const SWContentEdgeInsets = {5, 10, 5, 10};
         self.titleLabel.alpha = 0;
         self.imageView.alpha = 0;
     } else {
-        self.backgroundImageView.alpha = 0;
-        self.titleLabel.alpha = 1;
-        self.imageView.alpha = 1;
+        // Leave this to unhighlighted
     }
 }
 
