@@ -73,6 +73,7 @@ static UIEdgeInsets const SWContentEdgeInsets = {5, 10, 5, 10};
     self.backgroundImageView.alpha = 0;
     self.backgroundImageView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
     [self insertSubview:self.backgroundImageView atIndex:0];
+    self.selected = self.selected;
 }
 
 - (void)commonInit
