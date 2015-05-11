@@ -64,6 +64,7 @@ static UIEdgeInsets const SWContentEdgeInsets = {5, 10, 5, 10};
 
 - (void)commonSetup
 {
+    self.adjustsImageWhenHighlighted = NO;
     self.layer.cornerRadius = self.cornerRadius;
     self.layer.borderWidth = self.borderWidth;
     self.layer.borderColor = self.tintColor.CGColor;
@@ -73,7 +74,11 @@ static UIEdgeInsets const SWContentEdgeInsets = {5, 10, 5, 10};
     self.backgroundImageView.alpha = 0;
     self.backgroundImageView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
     [self insertSubview:self.backgroundImageView atIndex:0];
+    
+    // HAX: solve image not alpha when set in storyboard
+    self.selected = self.selected;
 }
+
 
 - (void)commonInit
 {
@@ -96,33 +101,35 @@ static UIEdgeInsets const SWContentEdgeInsets = {5, 10, 5, 10};
 - (void)setHighlighted:(BOOL)highlighted
 {
     [super setHighlighted:highlighted];
-    
-    [UIView animateWithDuration:SWAnimationDuration animations:^{
-        if (highlighted) {
-            if (self.selected) {
-                self.backgroundImageView.alpha = 0.5;
-                self.titleLabel.alpha = 0;
-                self.imageView.alpha = 0;
-                self.layer.borderColor = [UIColor clearColor].CGColor;
-            } else {
-                self.backgroundImageView.alpha = 1;
-                self.titleLabel.alpha = 0;
-                self.imageView.alpha = 0;
-            }
+
+    if (self.selected) {
+        if (self.highlighted) {
+            self.backgroundImageView.alpha = 0.5;
+            self.titleLabel.alpha = 0;
+            self.imageView.alpha = 0;
+            self.layer.borderColor = [UIColor clearColor].CGColor;
         } else {
-            self.layer.borderColor = self.tintColor.CGColor;
-            if (self.selected) {
+            self.backgroundImageView.alpha = 1;
+            self.titleLabel.alpha = 0;
+            self.imageView.alpha = 0;
+        }
+    } else {
+        [UIView animateWithDuration:SWAnimationDuration animations:^{
+            if (highlighted) {
+                
                 self.backgroundImageView.alpha = 1;
                 self.titleLabel.alpha = 0;
                 self.imageView.alpha = 0;
+                
             } else {
+                self.layer.borderColor = self.tintColor.CGColor;
                 self.backgroundImageView.alpha = 0;
                 self.titleLabel.alpha = 1;
                 self.imageView.alpha = 1;
+                
             }
-        }
-
-    }];
+        }];
+    }
 }
 
 - (void)setSelected:(BOOL)selected
@@ -134,9 +141,7 @@ static UIEdgeInsets const SWContentEdgeInsets = {5, 10, 5, 10};
         self.titleLabel.alpha = 0;
         self.imageView.alpha = 0;
     } else {
-        self.backgroundImageView.alpha = 0;
-        self.titleLabel.alpha = 1;
-        self.imageView.alpha = 1;
+        // Leave this to unhighlighted
     }
 }
 
@@ -145,7 +150,11 @@ static UIEdgeInsets const SWContentEdgeInsets = {5, 10, 5, 10};
     self.layer.borderColor = self.tintColor.CGColor;
     [self setTitleColor:self.tintColor forState:UIControlStateNormal];
     self.backgroundImageView.image = [self sw_backgroundImage];
+    
+    // HAX: prevent imageview from showing up
+    self.imageView.tintColor = [UIColor clearColor];
 }
+
 
 #pragma mark - Properties
 
