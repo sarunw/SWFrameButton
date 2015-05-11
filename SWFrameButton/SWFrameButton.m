@@ -62,15 +62,6 @@ static UIEdgeInsets const SWContentEdgeInsets = {5, 10, 5, 10};
     return self;
 }
 
-- (void)drawRect:(CGRect)rect
-{
-    [super drawRect:rect];
-    
-    if (self.selected) {
-        // This still need for selected button with image init from storyboard
-        self.imageView.alpha = 0;
-    }
-}
 
 - (void)commonSetup
 {
@@ -117,11 +108,13 @@ static UIEdgeInsets const SWContentEdgeInsets = {5, 10, 5, 10};
             self.backgroundImageView.alpha = 0.5;
             self.titleLabel.alpha = 0;
             self.imageView.alpha = 0;
+            self.imageView.tintColor = [UIColor clearColor];
             self.layer.borderColor = [UIColor clearColor].CGColor;
         } else {
             self.backgroundImageView.alpha = 1;
             self.titleLabel.alpha = 0;
             self.imageView.alpha = 0;
+            self.imageView.tintColor = [UIColor clearColor];
         }
     } else {
         [UIView animateWithDuration:SWAnimationDuration animations:^{
@@ -130,13 +123,13 @@ static UIEdgeInsets const SWContentEdgeInsets = {5, 10, 5, 10};
                 self.backgroundImageView.alpha = 1;
                 self.titleLabel.alpha = 0;
                 self.imageView.alpha = 0;
-                
+                self.imageView.tintColor = [UIColor clearColor];
             } else {
                 self.layer.borderColor = self.tintColor.CGColor;
                 self.backgroundImageView.alpha = 0;
                 self.titleLabel.alpha = 1;
                 self.imageView.alpha = 1;
-                
+                self.imageView.tintColor = self.tintColor;
             }
         }];
     }
@@ -150,6 +143,7 @@ static UIEdgeInsets const SWContentEdgeInsets = {5, 10, 5, 10};
         self.backgroundImageView.alpha = 1;
         self.titleLabel.alpha = 0;
         self.imageView.alpha = 0;
+        self.imageView.tintColor = [UIColor clearColor];
     } else {
         // Leave this to unhighlighted
     }
@@ -160,13 +154,6 @@ static UIEdgeInsets const SWContentEdgeInsets = {5, 10, 5, 10};
     self.layer.borderColor = self.tintColor.CGColor;
     [self setTitleColor:self.tintColor forState:UIControlStateNormal];
     self.backgroundImageView.image = [self sw_backgroundImage];
-    
-    // HAX: prevent imageview from showing up when tintColor did change
-    if (self.selected) {
-        self.imageView.tintColor = [UIColor clearColor];
-    } else {
-        self.imageView.tintColor = self.tintColor;
-    }
 }
 
 
