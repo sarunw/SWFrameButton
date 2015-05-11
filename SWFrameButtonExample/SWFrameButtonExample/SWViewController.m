@@ -52,6 +52,7 @@
     
     SWFrameButton *tintButton = [[SWFrameButton alloc] init];
     [tintButton setTitle:@"Green Tint Button" forState:UIControlStateNormal];
+    [tintButton setImage:magic forState:UIControlStateNormal];
     [tintButton sizeToFit];
     tintButton.tintColor = [UIColor greenColor];
     tintButton.center = CGPointMake(self.view.center.x, self.view.center.y + 100);

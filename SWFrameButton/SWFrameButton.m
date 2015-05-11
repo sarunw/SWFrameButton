@@ -62,6 +62,16 @@ static UIEdgeInsets const SWContentEdgeInsets = {5, 10, 5, 10};
     return self;
 }
 
+- (void)drawRect:(CGRect)rect
+{
+    [super drawRect:rect];
+    
+    if (self.selected) {
+        // This still need for selected button with image init from storyboard
+        self.imageView.alpha = 0;
+    }
+}
+
 - (void)commonSetup
 {
     self.adjustsImageWhenHighlighted = NO;
@@ -151,8 +161,12 @@ static UIEdgeInsets const SWContentEdgeInsets = {5, 10, 5, 10};
     [self setTitleColor:self.tintColor forState:UIControlStateNormal];
     self.backgroundImageView.image = [self sw_backgroundImage];
     
-    // HAX: prevent imageview from showing up
-    self.imageView.tintColor = [UIColor clearColor];
+    // HAX: prevent imageview from showing up when tintColor did change
+    if (self.selected) {
+        self.imageView.tintColor = [UIColor clearColor];
+    } else {
+        self.imageView.tintColor = self.tintColor;
+    }
 }
 
 
