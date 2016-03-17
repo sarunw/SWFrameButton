@@ -22,6 +22,7 @@
 		A00551EF1938497B009FF21A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A00551ED1938497B009FF21A /* InfoPlist.strings */; };
 		A00551F11938497B009FF21A /* SWFrameButtonExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A00551F01938497B009FF21A /* SWFrameButtonExampleTests.m */; };
 		A005520119384AAD009FF21A /* SWFrameButton.m in Sources */ = {isa = PBXBuildFile; fileRef = A005520019384AAD009FF21A /* SWFrameButton.m */; };
+		A00DF5761C9B3182006F51A2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A00DF5751C9B3182006F51A2 /* LaunchScreen.storyboard */; };
 		A0A538201AEEAB7900DF3DE8 /* SWFrameButton.podspec in Resources */ = {isa = PBXBuildFile; fileRef = A0A5381F1AEEAB7900DF3DE8 /* SWFrameButton.podspec */; };
 		A0CAF4531AEF391A002FD35D /* SWSecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0CAF4521AEF391A002FD35D /* SWSecondViewController.m */; };
 /* End PBXBuildFile section */
@@ -58,6 +59,7 @@
 		A00551F01938497B009FF21A /* SWFrameButtonExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SWFrameButtonExampleTests.m; sourceTree = "<group>"; };
 		A00551FF19384AAD009FF21A /* SWFrameButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWFrameButton.h; sourceTree = "<group>"; };
 		A005520019384AAD009FF21A /* SWFrameButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWFrameButton.m; sourceTree = "<group>"; };
+		A00DF5751C9B3182006F51A2 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A0A5381F1AEEAB7900DF3DE8 /* SWFrameButton.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = SWFrameButton.podspec; path = ../../SWFrameButton.podspec; sourceTree = "<group>"; };
 		A0CAF4511AEF391A002FD35D /* SWSecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWSecondViewController.h; sourceTree = "<group>"; };
 		A0CAF4521AEF391A002FD35D /* SWSecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWSecondViewController.m; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 				A00551DB1938497A009FF21A /* SWViewController.m */,
 				A0CAF4511AEF391A002FD35D /* SWSecondViewController.h */,
 				A0CAF4521AEF391A002FD35D /* SWSecondViewController.m */,
+				A00DF5751C9B3182006F51A2 /* LaunchScreen.storyboard */,
 				A00551DD1938497A009FF21A /* Images.xcassets */,
 				A00551CC1938497A009FF21A /* Supporting Files */,
 			);
@@ -221,7 +224,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = SW;
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = "Sarun Wongpatcharapakorn";
 				TargetAttributes = {
 					A00551E21938497B009FF21A = {
@@ -256,6 +259,7 @@
 				A00551DE1938497A009FF21A /* Images.xcassets in Resources */,
 				A00551D01938497A009FF21A /* InfoPlist.strings in Resources */,
 				A0A538201AEEAB7900DF3DE8 /* SWFrameButton.podspec in Resources */,
+				A00DF5761C9B3182006F51A2 /* LaunchScreen.storyboard in Resources */,
 				A00551D91938497A009FF21A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -347,6 +351,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -403,11 +408,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SWFrameButtonExample/SWFrameButtonExample-Prefix.pch";
 				INFOPLIST_FILE = "SWFrameButtonExample/SWFrameButtonExample-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.sarunw.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -417,11 +422,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SWFrameButtonExample/SWFrameButtonExample-Prefix.pch";
 				INFOPLIST_FILE = "SWFrameButtonExample/SWFrameButtonExample-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.sarunw.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -443,6 +448,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "SWFrameButtonExampleTests/SWFrameButtonExampleTests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.sarunw.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
@@ -461,6 +467,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SWFrameButtonExample/SWFrameButtonExample-Prefix.pch";
 				INFOPLIST_FILE = "SWFrameButtonExampleTests/SWFrameButtonExampleTests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.sarunw.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;

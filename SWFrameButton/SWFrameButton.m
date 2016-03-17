@@ -33,6 +33,7 @@ static UIEdgeInsets const SWContentEdgeInsets = {5, 10, 5, 10};
 @interface SWFrameButton ()
 
 @property (nonatomic, strong) UIImageView *backgroundImageView;
+@property (nonatomic, assign) BOOL disableAnimation;
 
 @end
 
@@ -103,6 +104,10 @@ static UIEdgeInsets const SWContentEdgeInsets = {5, 10, 5, 10};
 {
     [super setHighlighted:highlighted];
 
+    if (self.disableAnimation) {
+        return;
+    }
+    
     if (self.selected) {
         if (self.highlighted) {
             self.backgroundImageView.alpha = 0.5;
@@ -139,6 +144,10 @@ static UIEdgeInsets const SWContentEdgeInsets = {5, 10, 5, 10};
 {
     [super setSelected:selected];
 
+    if (self.disableAnimation) {
+        return;
+    }
+    
     if (selected) {
         self.backgroundImageView.alpha = 1;
         self.titleLabel.alpha = 0;
@@ -153,6 +162,32 @@ static UIEdgeInsets const SWContentEdgeInsets = {5, 10, 5, 10};
 {
     self.layer.borderColor = self.tintColor.CGColor;
     [self setTitleColor:self.tintColor forState:UIControlStateNormal];
+    [self updateBackgroundImageView];
+}
+
+- (void)setTitle:(NSString *)title forState:(UIControlState)state {
+    [super setTitle:title forState:state];
+    
+    self.disableAnimation = YES;
+    self.selected = YES;
+    self.selected = NO;
+    self.disableAnimation = NO;
+    
+    [self updateBackgroundImageView];
+}
+
+- (void)setImage:(UIImage *)image forState:(UIControlState)state {
+    [super setImage:image forState:state];
+    
+    self.disableAnimation = YES;
+    self.selected = YES;
+    self.selected = NO;
+    self.disableAnimation = NO;
+    
+    [self updateBackgroundImageView];
+}
+
+- (void) updateBackgroundImageView {
     self.backgroundImageView.image = [self sw_backgroundImage];
 }
 
@@ -191,10 +226,13 @@ static UIEdgeInsets const SWContentEdgeInsets = {5, 10, 5, 10};
     }
 }
 
+
+
 #pragma mark - helper
 
 - (void)layoutSubviews {
     [super layoutSubviews];
+    
     self.backgroundImageView.image = [self sw_backgroundImage];
 }
 
@@ -203,20 +241,23 @@ static UIEdgeInsets const SWContentEdgeInsets = {5, 10, 5, 10};
     UIGraphicsBeginImageContextWithOptions(rect.size, NO, 0);
     CGContextRef context = UIGraphicsGetCurrentContext();
     
-    NSRange range =NSMakeRange(0, self.titleLabel.text.length);
+    NSString *textSelectedState = [self titleForState:UIControlStateSelected];
+    UIImage *imageSelectedState = [self imageForState:UIControlStateSelected];
+    
+    NSRange range = NSMakeRange(0, textSelectedState.length);
     
     UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:rect cornerRadius:self.cornerRadius];
     CGContextSetFillColorWithColor(context, self.tintColor.CGColor);
     [path fill];
-    NSAttributedString *attributedString =    self.titleLabel.attributedText;
+    NSAttributedString *attributedString = self.titleLabel.attributedText;
 
     NSDictionary *dict = [attributedString attributesAtIndex:0 effectiveRange:&range];
 
     CGContextSetBlendMode(context, kCGBlendModeDestinationOut);
     
-    [self.titleLabel.text drawInRect:self.titleLabel.frame withAttributes:dict];
-    UIImage *i = self.imageView.image;
-    [i drawAtPoint:self.imageView.frame.origin blendMode:kCGBlendModeDestinationOut alpha:1];
+    [textSelectedState drawInRect:self.titleLabel.frame withAttributes:dict];
+    
+    [imageSelectedState drawAtPoint:self.imageView.frame.origin blendMode:kCGBlendModeDestinationOut alpha:1];
     
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
