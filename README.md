@@ -47,7 +47,7 @@ or set individual button style via property
 SWFrameButton *button = [[SWFrameButton alloc] init];
 button.tintColor = [UIColor orangeColor];
 button.borderWidth = 1;
-button.corderRadius = 10;
+button.cornerRadius = 10;
 ```
 
 ## Author
