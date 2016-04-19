@@ -148,13 +148,29 @@ static UIEdgeInsets const SWContentEdgeInsets = {5, 10, 5, 10};
         return;
     }
     
-    if (selected) {
-        self.backgroundImageView.alpha = 1;
-        self.titleLabel.alpha = 0;
-        self.imageView.alpha = 0;
-        self.imageView.tintColor = [UIColor clearColor];
+    if (self.highlighted) {
+        // selected by user interaction
+        if (selected) {
+            self.backgroundImageView.alpha = 1;
+            self.titleLabel.alpha = 0;
+            self.imageView.alpha = 0;
+            self.imageView.tintColor = [UIColor clearColor];
+        } else {
+            // Leave this to unhighlighted
+        }
     } else {
-        // Leave this to unhighlighted
+        if (selected) {
+            self.backgroundImageView.alpha = 1;
+            self.titleLabel.alpha = 0;
+            self.imageView.alpha = 0;
+            self.imageView.tintColor = [UIColor clearColor];
+        } else {
+            self.layer.borderColor = self.tintColor.CGColor;
+            self.backgroundImageView.alpha = 0;
+            self.titleLabel.alpha = 1;
+            self.imageView.alpha = 1;
+            self.imageView.tintColor = self.tintColor;
+        }
     }
 }
 
@@ -163,6 +179,10 @@ static UIEdgeInsets const SWContentEdgeInsets = {5, 10, 5, 10};
     self.layer.borderColor = self.tintColor.CGColor;
     [self setTitleColor:self.tintColor forState:UIControlStateNormal];
     [self updateBackgroundImageView];
+    
+    if (self.selected == NO) {
+        self.imageView.tintColor = self.tintColor;
+    }
 }
 
 - (void)setTitle:(NSString *)title forState:(UIControlState)state {

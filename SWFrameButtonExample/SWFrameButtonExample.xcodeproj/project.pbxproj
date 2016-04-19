@@ -25,6 +25,8 @@
 		A00DF5761C9B3182006F51A2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A00DF5751C9B3182006F51A2 /* LaunchScreen.storyboard */; };
 		A0A538201AEEAB7900DF3DE8 /* SWFrameButton.podspec in Resources */ = {isa = PBXBuildFile; fileRef = A0A5381F1AEEAB7900DF3DE8 /* SWFrameButton.podspec */; };
 		A0CAF4531AEF391A002FD35D /* SWSecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0CAF4521AEF391A002FD35D /* SWSecondViewController.m */; };
+		A0EDFFB31CC687F600C6A025 /* SWTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A0EDFFB21CC687F600C6A025 /* SWTableViewCell.m */; };
+		A0EDFFB61CC6882D00C6A025 /* SWTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0EDFFB51CC6882D00C6A025 /* SWTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +66,10 @@
 		A0CAF4511AEF391A002FD35D /* SWSecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWSecondViewController.h; sourceTree = "<group>"; };
 		A0CAF4521AEF391A002FD35D /* SWSecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWSecondViewController.m; sourceTree = "<group>"; };
 		A0E9F8901AEE8DD4007223D2 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = MyPlayground.playground; path = ../MyPlayground.playground; sourceTree = "<group>"; };
+		A0EDFFB11CC687F600C6A025 /* SWTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWTableViewCell.h; sourceTree = "<group>"; };
+		A0EDFFB21CC687F600C6A025 /* SWTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWTableViewCell.m; sourceTree = "<group>"; };
+		A0EDFFB41CC6882D00C6A025 /* SWTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWTableViewController.h; sourceTree = "<group>"; };
+		A0EDFFB51CC6882D00C6A025 /* SWTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,7 +137,11 @@
 				A00551D71938497A009FF21A /* Main.storyboard */,
 				A00551DA1938497A009FF21A /* SWViewController.h */,
 				A00551DB1938497A009FF21A /* SWViewController.m */,
+				A0EDFFB11CC687F600C6A025 /* SWTableViewCell.h */,
+				A0EDFFB21CC687F600C6A025 /* SWTableViewCell.m */,
 				A0CAF4511AEF391A002FD35D /* SWSecondViewController.h */,
+				A0EDFFB41CC6882D00C6A025 /* SWTableViewController.h */,
+				A0EDFFB51CC6882D00C6A025 /* SWTableViewController.m */,
 				A0CAF4521AEF391A002FD35D /* SWSecondViewController.m */,
 				A00DF5751C9B3182006F51A2 /* LaunchScreen.storyboard */,
 				A00551DD1938497A009FF21A /* Images.xcassets */,
@@ -284,6 +294,8 @@
 				A00551D61938497A009FF21A /* SWAppDelegate.m in Sources */,
 				A00551D21938497A009FF21A /* main.m in Sources */,
 				A005520119384AAD009FF21A /* SWFrameButton.m in Sources */,
+				A0EDFFB61CC6882D00C6A025 /* SWTableViewController.m in Sources */,
+				A0EDFFB31CC687F600C6A025 /* SWTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
